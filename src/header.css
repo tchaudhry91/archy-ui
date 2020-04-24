@@ -1,0 +1,25 @@
+.App-logo {
+  height: inherit;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: black;
+  height: 4em;
+  display: inline-flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+  margin: auto;
+}
+
+.App-headline {
+  margin: auto;
+  font-size: x-large;
+  padding: 2px;
+}
+
+.App-link {
+  color: #61dafb;
+}
