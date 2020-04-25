@@ -1,21 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from './logo.png';
 import "./header.css";
-import { Login } from "./login";
-import { Logout } from "./logout";
+
+import { isLoggedIn } from "./utils";
+import { Menu } from "./menu";
 
 export function Header(props) {
-  let button = <Login setLogin={props.setLogin}/>
-  if (props.loggedIn) {
-    button = <Logout setLogin={props.setLogin}/>
-  }
+  const [loggedIn, setLogin] = useState(isLoggedIn());
+  const [showMenu, setShowMenu] = useState(false);
+
   return (
-    <header className="App-header" setLogin={props.setLogin} login={props.login}>
-      <img src={logo} className="App-logo" alt="logo" />
-      <p className="App-headline">
-        Archy - ZSH History Search
-      </p>
-      {button}
+    <header>
+      <div className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p className="App-headline">Archy - ZSH History Search</p>
+        <button className="Menu-button" onClick={() => { setShowMenu(!showMenu) }}>☰</button>
+      </div>
+      {showMenu && <Menu loggedIn={loggedIn} setLogin={setLogin} />}
     </header>
   );
 }

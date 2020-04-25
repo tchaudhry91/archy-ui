@@ -1,0 +1,9 @@
+.Menu-bar {
+    background-color: #282c34;
+    width:fit-content;
+    margin: auto;
+    position: absolute;
+    right: 0px;
+    visibility: visible;
+    transition: all 0.2s;
+}
