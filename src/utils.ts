@@ -51,3 +51,29 @@ export async function getToken(user: string, password: string): Promise<string> 
         throw new Error(err)
     }
 }
+
+export async function getEntries(timestamp: number, hostname: string, command: string): Promise<Array<any>> {
+    try {
+        const cookies = new Cookies();
+        const token: string = cookies.get("token")
+        if (token === undefined){
+            console.log("No token defined")
+            return []
+        }
+        const resp = await fetch(baseURL.concat("/entries"), {
+            method: "GET",
+            headers: {
+                'token': token
+            }
+        })
+        if(resp.status !== 200) {
+            throw new Error("Failed to fetch entries:" + resp.status)
+        }
+        const data = await resp.json()
+        let entries = data.entries
+        return entries
+    }
+    catch (err) {
+        throw new Error("Failed to fetch entries:" + err)
+    }
+}
